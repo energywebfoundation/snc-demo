@@ -55,6 +55,7 @@ export const deployEmptyContracts = async () => {
     const originContractLookup = originContracts.OriginContractLookup;
     const certificateLogic = originContracts.CertificateLogic;
     logger.info('Origin Contract Deployed: ' + originContractLookup);
+    logger.info('CertificateLogic Deployed: ' + certificateLogic);
 
     const marketContracts : any = await migrateMarketRegistryContracts(
         web3,
@@ -81,6 +82,13 @@ export const deployEmptyContracts = async () => {
 
     const writeJsonFile = require('write-json-file');
     await writeJsonFile('./config/contractConfig.json', deployResult);
+
+    console.log({
+        originContracts,
+        userContracts,
+        assetContracts,
+        marketContracts
+    })
 
     return deployResult;
 };
